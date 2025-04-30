@@ -1,0 +1,41 @@
+/* src/features/tripPlanner/styles/SceneAnalysis.module.css */
+.uploadedImageContainer {
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8fafc;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .uploadedImage {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  
+  .sectionTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: #1e293b;
+    text-align: center;
+  }
+  
+  .sceneInfo {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .sceneType {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #dbeafe;
+    color: #1e40af;
+    border-radius: 20px;
+    font-weight: 500;
+    text-align: center;
+  }

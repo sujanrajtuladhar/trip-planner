@@ -20,6 +20,11 @@ cache = Cache()  # Initialize without config for now
 
 migrate = Migrate()
 
+google_creds_raw = os.environ.get("GOOGLE_CREDS_JSON")
+if google_creds_raw:
+    with open("google-creds.json", "w") as f:
+        f.write(google_creds_raw)
+
 def create_app():
     """
     Create and configure the Flask application.
@@ -50,4 +55,5 @@ def create_app():
 
 if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))  # 10000 is just a fallback
+    app.run(host='0.0.0.0', port=port, debug=True)
