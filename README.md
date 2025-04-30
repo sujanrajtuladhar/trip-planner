@@ -58,6 +58,33 @@ This project is structured as a **modern full-stack web application** with a **F
 
 ---
 
+## 📈 Scaling Considerations
+
+### Frontend
+
+- **Vite + React + TypeScript**: Fast cold starts and hot module replacement (HMR) improve developer experience and productivity at scale.
+- **Static Deployment Ready**: The frontend can be deployed to any CDN-backed static host such as Vercel, Netlify, or AWS S3 with CloudFront.
+- **Code Splitting & Modular Design**: Components and feature folders are modular, enabling future code splitting and lazy loading for performance optimization.
+
+### Backend
+
+- **Flask Architecture**: Designed with separation of concerns (routes, models, utils), allowing scalability as services grow.
+- **Database Flexibility**: Currently uses SQLite for development. Can be switched to PostgreSQL or MySQL in production for performance and concurrency.
+- **Horizontal Scaling**: Flask can be deployed behind WSGI servers like Gunicorn or uWSGI and scaled horizontally behind Nginx or a cloud load balancer.
+- **Ready for Containerization**: Easily dockerized for scalable deployment on platforms like Docker Compose, ECS, or Kubernetes.
+
+### API
+
+- **RESTful Design**: Stateless API structure makes it easy to introduce additional clients (e.g., mobile apps) or migrate endpoints into microservices.
+- **Secure & Environment-Ready**: Uses `.env` files for environment-specific configurations, enabling smooth CI/CD and cloud deployments.
+
+### DevOps & Maintainability
+
+- **Clear Separation of Concerns**: Frontend and backend are decoupled, simplifying updates, debugging, and scaling individually.
+- **Modular Codebase**: Feature-based frontend and backend structure allows independent team collaboration and future growth.
+
+---
+
 This structure was chosen to ensure a balance between developer experience, project scalability, and clean, maintainable code — fulfilling the core deliverables of:
 - ✅ A deployed full-stack web application
 - ✅ A well-documented public repository
