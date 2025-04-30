@@ -1,7 +1,6 @@
 import requests
 from server.config import Config
 from collections import defaultdict
-from datetime import datetime
 
 
 def get_weather(location):

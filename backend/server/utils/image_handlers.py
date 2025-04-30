@@ -4,7 +4,6 @@ from werkzeug.utils import secure_filename
 
 from server.config import Config
 from server.models import ImageUpload, db
-# Helper functions
 
 def handle_image_upload():
     """

@@ -32,7 +32,6 @@ def generate_tripadvisor_label(openai_client, label_list):
     return response.choices[0].message.content.strip()
 
 
-
 def suggest_location_with_gpt(client, labels):
     """Uses GPT-4 to suggest at least 5 possible real-world travel locations based on image labels."""
     prompt = (

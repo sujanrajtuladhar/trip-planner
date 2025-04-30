@@ -17,8 +17,26 @@ client = OpenAI(api_key=Config.OPENAI_API_KEY)
 def register_routes(app, cache):
     """
     Register all routes with the Flask app.
+
     Args:
         app: Flask app instance.
+        cache: Flask-Caching instance for caching routes.
+
+    Routes:
+        /api [GET]:
+            Returns a welcome message for the Trip Planner API.
+
+        /api/upload [POST]:
+            Handles image upload and scene detection.
+            Returns:
+                JSON response with the result of the upload, scene detection, 
+                suggested locations, and any errors encountered.
+
+        /api/weather [GET]:
+            Fetches weather data for a given location.
+            Returns:
+                JSON response with the weather data or error if location is missing
+                or if there is an issue fetching the weather data.
     """
     
     @app.route('/api', methods=['GET'])
@@ -29,8 +47,11 @@ def register_routes(app, cache):
     def upload_image():
         """
         Handle image upload and scene detection.
+        
         Returns:
-            JSON response with the result of the upload and scene detection.
+            JSON response with the result of the upload, including the filename, 
+            scene type, file URL, suggested locations, and a success message. 
+            Returns an error message if the upload or scene detection fails.
         """
         # Step 1: Handle image upload
         file, error = handle_image_upload()
@@ -63,8 +84,11 @@ def register_routes(app, cache):
     def weather():
         """
         Fetch weather data for a given location.
+        
         Returns:
-            JSON response with the weather data.
+            JSON response with the weather data if the location is valid and 
+            weather data is successfully fetched. Returns an error message if 
+            the location query parameter is missing or if fetching weather data fails.
         """
         location = request.args.get('location')
         if not location:
