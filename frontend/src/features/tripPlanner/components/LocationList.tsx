@@ -1,4 +1,3 @@
-// src/features/tripPlanner/components/LocationList.tsx
 import React from 'react';
 import { Location } from '../types';
 import styles from '../styles/LocationList.module.css';

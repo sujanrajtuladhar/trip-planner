@@ -1,4 +1,3 @@
-// src/features/tripPlanner/Home.tsx
 import React, { useState } from 'react';
 import { uploadImage, fetchWeather } from './services/tripPlannerService';
 import { UploadResponse, WeatherDay } from './types';
@@ -39,13 +38,16 @@ const Home: React.FC = () => {
     try {
       const res = await uploadImage(file);
       setUploadData(res);
-    } catch (err) {
-      alert("Upload failed.");
+    } catch (err: any) {
+      const errorMessage =
+        err?.response?.data?.error || err?.message || "Upload failed.";
+      alert(errorMessage);
       console.error(err);
     } finally {
       setLoading(false);
     }
   };
+  
 
   const handleFetchWeather = async (city: string) => {
     setLoading(true);

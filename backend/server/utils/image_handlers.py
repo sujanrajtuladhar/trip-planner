@@ -5,9 +5,18 @@ from werkzeug.utils import secure_filename
 from server.config import Config
 from server.models import ImageUpload, db
 
+
+# Constants for validation
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
+MAX_FILE_SIZE_MB = 10
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
 def handle_image_upload():
     """
     Handles the uploading of an image and saves it to the server.
+
     Returns:
         file (dict): containing filename and filepath.
         error (str): error message if upload fails, otherwise None.
@@ -16,8 +25,20 @@ def handle_image_upload():
         return None, 'No file uploaded'
 
     file = request.files['file']
+
     if file.filename == '':
         return None, 'Empty filename'
+
+    if not allowed_file(file.filename):
+        return None, 'File type not allowed. Only JPG and PNG are accepted.'
+
+    file.seek(0, os.SEEK_END)
+    file_length = file.tell()
+    file.seek(0)  # Reset pointer after checking size
+
+    print(file_length, '++++++++++++++++++++++')
+    if file_length > MAX_FILE_SIZE_MB * 1024 * 1024:
+        return None, 'File size exceeds 10MB limit.'
 
     filename = secure_filename(file.filename)
     upload_folder = os.path.join(os.getcwd(), 'static')

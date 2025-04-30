@@ -1,4 +1,3 @@
-// src/features/tripPlanner/components/ImageUploader.tsx
 import React from 'react';
 import styles from '../styles/ImageUploader.module.css';
 

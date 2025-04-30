@@ -1,4 +1,3 @@
-// src/features/tripPlanner/components/WeatherForecast.tsx
 import React from 'react';
 import { WeatherDay } from '../types';
 import styles from '../styles/WeatherForecast.module.css';

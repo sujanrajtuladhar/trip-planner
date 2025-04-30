@@ -1,9 +1,7 @@
-/* src/features/tripPlanner/styles/LocationList.module.css */
 .locationsSection {
     margin-bottom: 1rem;
   }
   
-  /* Add the sectionTitle class */
   .sectionTitle {
     font-size: 1.2rem;
     font-weight: 600;
@@ -32,7 +30,6 @@
     width: 100%;
   }
   
-  /* Make sure the active class is properly defined */
   .locationButton.active {
     background-color: #dbeafe;
     border-color: #3b82f6;
