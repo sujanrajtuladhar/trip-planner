@@ -4,3 +4,8 @@ image-analyze-gcv-9106713cf181.json
 google-creds.json
 doc/
 .env
+static/*
+ignorefiles/
+.DS_Store
+__pycache__/
+*.pyc

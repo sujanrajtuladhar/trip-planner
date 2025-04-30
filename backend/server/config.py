@@ -9,9 +9,6 @@ class Config:
     CACHE_TYPE = "SimpleCache"
     CACHE_DEFAULT_TIMEOUT = 3600
     UPLOAD_FOLDER = os.path.join(os.getcwd(), "static")
-    HUGGINGFACE_API_URL = "https://api-inference.huggingface.co/models/google/vit-base-patch16-224"
-    HUGGINGFACE_TOKEN = os.getenv("HUGGINGFACE_TOKEN", "")
-    # OPENWEATHERMAP_API_KEY = os.getenv("OPENWEATHERMAP_API_KEY", "")
 
     # Add BASE_URL to the config
     BASE_URL = os.getenv("BASE_URL", "http://127.0.0.1:5000")  # Default to local dev URL

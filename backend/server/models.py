@@ -4,6 +4,18 @@ from . import db
 from datetime import datetime
 
 class ImageUpload(db.Model):
+    """
+    Model for storing image upload records in the database.
+
+    Attributes:
+        id (int): Unique identifier for the image upload.
+        filename (str): Original filename of the uploaded image.
+        scene_type (str): Detected scene type of the image.
+        upload_time (datetime): Timestamp of when the image was uploaded.
+        file_url (str): URL of the uploaded image (optional).
+        additional_metadata (dict): Additional metadata associated with the image (optional).
+    """
+
     __tablename__ = 'image_uploads'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -19,6 +31,17 @@ class ImageUpload(db.Model):
 
 
 class Destination(db.Model):
+    """
+    Model for storing destination records in the database.
+
+    Attributes:
+        id (int): Unique identifier for the destination.
+        scene_type (str): Scene type associated with the destination.
+        location (str): Location associated with the destination.
+        weather_data (dict): Optional weather data associated with the destination.
+        cached_at (datetime): Timestamp of when the weather data was last fetched.
+    """
+
     __tablename__ = 'destinations'
     
     id = db.Column(db.Integer, primary_key=True)
