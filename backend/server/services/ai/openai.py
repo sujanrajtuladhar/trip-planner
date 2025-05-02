@@ -71,9 +71,9 @@ class TravelGPTService:
             f"TripAdvisor-style description: {tripadvisor_label}\n"
             f"Detected scene labels: {scene_str}\n"
             f"Detected landmarks (if any): {landmark_str}\n\n"
-            "Based on this information, suggest exactly 10 real-world travel destinations that closely match this content. "
+            "Based on this information, suggest exactly 6 real-world travel destinations that closely match this content. "
             "Each suggestion should be a known landmark, city, or natural site that fits the image. "
-            "Respond only with a JSON-formatted Python list of exactly 10 dictionaries. Do not include any explanation or extra text."
+            "Respond only with a JSON-formatted Python list of exactly 6 dictionaries. Do not include any explanation or extra text."
             "- 'name': Landmark, site, or location name (e.g., 'Angkor Wat')\n"
             "- 'city': Nearest major city\n"
             "- 'country': Country\n"
@@ -87,7 +87,7 @@ class TravelGPTService:
             {"role": "system", "content": "You are an assistant that suggests travel destinations."},
             {"role": "user", "content": prompt}
         ]
-        raw = self._call_gpt(messages, max_tokens=800)
+        raw = self._call_gpt(messages, max_tokens=400)
 
         if not raw:
             return self._fallback_location("No response from GPT")
