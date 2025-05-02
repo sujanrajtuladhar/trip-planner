@@ -8,10 +8,15 @@ OPENWEATHER_API_URL = "http://api.openweathermap.org/data/2.5/forecast"
 
 class WeatherService:
     def __init__(self, location: str):
+        """Initialize the WeatherService with a specific location."""
         self.location = location
 
     def fetch_weather_data(self) -> Optional[Dict]:
-        """Fetch raw 5-day / 3-hour interval forecast data from OpenWeatherMap."""
+        """
+        Fetch raw forecast data from OpenWeatherMap.
+        
+        :return: Raw weather data as a dictionary if successful, otherwise None.
+        """
         params = {
             "q": self.location,
             "appid": Config.OPENWEATHERMAP_API_KEY,
@@ -33,7 +38,12 @@ class WeatherService:
             return None
 
     def parse_daily_forecast(self, data: Dict) -> List[Dict]:
-        """Parse and simplify forecast to 1 entry per day (closest to 12:00)."""
+        """
+        Parse and simplify forecast data to one entry per day, closest to 12:00 PM.
+        
+        :param data: Raw weather data from the API.
+        :return: List of daily forecasts with temperature, weather description, humidity, and wind speed.
+        """
         daily_data = defaultdict(list)
 
         for entry in data.get("list", []):
@@ -42,6 +52,7 @@ class WeatherService:
 
         forecast = []
         for date, entries in daily_data.items():
+            # Select the forecast entry closest to midday (12:00 PM)
             midday_entry = min(entries, key=lambda x: abs(int(x["dt_txt"].split()[1].split(":")[0]) - 12))
             forecast.append({
                 "date": date,
@@ -54,7 +65,11 @@ class WeatherService:
         return forecast
 
     def get_weather(self) -> Optional[List[Dict]]:
-        """Public method to get simplified 5-day forecast for a location."""
+        """
+        Public method to retrieve a simplified 5-day weather forecast for the specified location.
+        
+        :return: Simplified list of daily forecasts or None if fetch fails.
+        """
         raw_data = self.fetch_weather_data()
         if not raw_data:
             return None

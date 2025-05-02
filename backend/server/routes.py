@@ -10,12 +10,21 @@ client = OpenAI(api_key=Config.OPENAI_API_KEY)
 
 
 def register_routes(app, cache):
+    """
+    Registers the API routes with the Flask app
+    """
     @app.route('/api', methods=['GET'])
     def index():
+        """
+        Returns a welcome message
+        """
         return jsonify({"message": "Welcome to the Trip Planner API!"}), 200
 
     @app.route('/api/upload', methods=['POST'])
     def upload_image():
+        """
+        Handles image upload and returns results
+        """
         file = request.files.get('file')
         if not file:
             return jsonify({'error': 'No file provided'}), 400
@@ -30,6 +39,9 @@ def register_routes(app, cache):
     @app.route('/api/weather', methods=['GET'])
     @cache.cached(timeout=3600, query_string=True)
     def weather():
+        """
+        Returns weather data for a given location
+        """
         location = request.args.get('location')
         if not location:
             return jsonify({'error': "Missing 'location' query parameter"}), 400

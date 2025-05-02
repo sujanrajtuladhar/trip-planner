@@ -10,15 +10,46 @@ from server.services.ai.openai import TravelGPTService
 
 
 class ImageUploadService:
+    """
+    Handles image upload and generates a scene-based destination suggestion using
+    Google Cloud Vision API and GPT-4.
+    """
+
     def __init__(self, openai_client, base_url=None):
+        """
+        Initialize the service with an OpenAI client and a base URL.
+
+        Args:
+            openai_client (OpenAI): An instance of the OpenAI client.
+            base_url (str): The base URL for generating the file URL. Defaults to
+                the BASE_URL environment variable.
+        """
         self.vision_service = GoogleVisionService()
         self.gpt_service = TravelGPTService(openai_client)
         self.base_url = base_url or Config.BASE_URL
 
     def allowed_file(self, filename):
+        """
+        Check if the file extension is allowed.
+
+        Args:
+            filename (str): The uploaded file name.
+
+        Returns:
+            bool: Whether the file type is allowed.
+        """
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
     def handle_upload(self, file):
+        """
+        Handle the file upload and perform basic validation.
+
+        Args:
+            file (werkzeug.datastructures.FileMultiDict): The uploaded file.
+
+        Returns:
+            dict: The uploaded file information or an error message.
+        """
         if not file or file.filename == '':
             return None, 'No file uploaded or empty filename.'
 
@@ -42,9 +73,29 @@ class ImageUploadService:
         return {'filename': filename, 'filepath': filepath}, None
 
     def generate_file_url(self, filename):
+        """
+        Generate the file URL using the base URL.
+
+        Args:
+            filename (str): The uploaded file name.
+
+        Returns:
+            str: The file URL.
+        """
         return f"{self.base_url}/{UPLOAD_DIR}/{filename}"
 
     def create_db_record(self, filename, scene_type, file_url):
+        """
+        Create a new ImageUpload record in the database.
+
+        Args:
+            filename (str): The uploaded file name.
+            scene_type (str): The scene type.
+            file_url (str): The file URL.
+
+        Returns:
+            ImageUpload: The newly created record.
+        """
         record = ImageUpload(
             filename=filename,
             scene_type=scene_type,
@@ -59,6 +110,15 @@ class ImageUploadService:
         return record
 
     def process_image_upload(self, file):
+        """
+        Process the image upload and generate a scene-based destination suggestion.
+
+        Args:
+            file (werkzeug.datastructures.FileMultiDict): The uploaded file.
+
+        Returns:
+            dict: The generated suggestion or an error message.
+        """
         # Step 1: Upload file
         upload_result, error = self.handle_upload(file)
         if error:
