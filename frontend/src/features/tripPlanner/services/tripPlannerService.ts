@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, CancelToken } from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { UploadResponse, WeatherDay } from '../types';
 
 const API = import.meta.env.VITE_API_BASE_URL; // Will use your .env file
