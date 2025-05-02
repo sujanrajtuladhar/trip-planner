@@ -87,17 +87,20 @@ class TravelGPTService:
             {"role": "system", "content": "You are an assistant that suggests travel destinations."},
             {"role": "user", "content": prompt}
         ]
-        raw = self._call_gpt(messages, max_tokens=400)
+        raw = self._call_gpt(messages, max_tokens=600)
 
         if not raw:
             return self._fallback_location("No response from GPT")
 
+        print(raw, 'gpt response')
         try:
             # Attempt to parse the raw JSON response
             try:
                 locations = json.loads(raw)
             except json.JSONDecodeError:
                 locations = ast.literal_eval(raw)
+
+            print(locations, 'parsed gpt response')
 
             if isinstance(locations, list):
                 return self._clean_and_sort(locations)
