@@ -1,48 +1,158 @@
 .locationsSection {
-    margin-bottom: 1rem;
-  }
-  
-  .sectionTitle {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 0 0 1rem 0;
-    color: #1e293b;
-  }
-  
-  .locationsList {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .locationButton {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-    background-color: white;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: left;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-    width: 100%;
-  }
-  
-  .locationButton.active {
-    background-color: #dbeafe;
-    border-color: #3b82f6;
-  }
-  
-  .locationName {
-    font-weight: 600;
-    font-size: 1rem;
-    color: #1e293b;
-  }
-  
-  .locationDetails {
-    font-size: 0.875rem;
-    color: #64748b;
-    margin-top: 0.25rem;
-  }
+  margin-bottom: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: #1e293b;
+}
+
+.locationsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.locationButton {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
+
+.locationButton:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.locationButton.active {
+  background-color: #dbeafe;
+  border-color: #3b82f6;
+}
+
+.locationName {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1e293b;
+}
+
+.locationDetails {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+.locationReason {
+  font-size: 0.8rem;
+  color: #94a3b8;
+  margin-top: 0.5rem;
+  font-style: italic;
+}
+
+.showMoreButton {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #f1f5f9;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  color: #3b82f6;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.showMoreButton:hover {
+  background-color: #e2e8f0;
+}
+
+.showMoreButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rankingExplanation {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+
+.locationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.rankingBadges {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.relevanceBadge {
+  font-size: 0.7rem;
+  background-color: #dbeafe;
+  color: #1e40af;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.popularityBadge {
+  font-size: 0.7rem;
+  background-color: #fef3c7;
+  color: #92400e;
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.locationReason {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+  line-height: 1.4;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.showMoreButton {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #f1f5f9;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  color: #3b82f6;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.showMoreIcon {
+  font-size: 1.2rem;
+}
+
+.showMoreButton:hover {
+  background-color: #e2e8f0;
+}
+
+.showMoreButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

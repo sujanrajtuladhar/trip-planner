@@ -7,7 +7,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 
 from server import db
-from server.config import Config
+from server.config.config import Config
 from server.routes import register_routes
 
 

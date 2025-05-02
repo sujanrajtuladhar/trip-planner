@@ -1,0 +1,3 @@
+ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png'}
+MAX_FILE_SIZE_MB = 10
+UPLOAD_DIR = 'static'

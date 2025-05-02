@@ -7,6 +7,9 @@ interface SceneAnalysisProps {
 }
 
 const SceneAnalysis: React.FC<SceneAnalysisProps> = ({ imageUrl, sceneType }) => {
+  // Remove quotes from scene type if present
+  const formattedSceneType = sceneType.replace(/['"]/g, '');
+  
   return (
     <>
       <div className={styles.uploadedImageContainer}>
@@ -20,8 +23,13 @@ const SceneAnalysis: React.FC<SceneAnalysisProps> = ({ imageUrl, sceneType }) =>
       <div className={styles.sceneInfo}>
         <h3 className={styles.sectionTitle}>Scene Analysis</h3>
         <div className={styles.sceneType}>
-          <span>{sceneType}</span>
+          <span>{formattedSceneType}</span>
         </div>
+        <p className={styles.sceneExplanation}>
+          Based on your image, we've identified this as a {formattedSceneType.toLowerCase()}. 
+          We've curated destinations that feature similar sacred architecture, cultural significance, 
+          and spiritual importance from around the world.
+        </p>
       </div>
     </>
   );
